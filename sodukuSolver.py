@@ -76,7 +76,10 @@ def find_empty(bo):
 
     return None
 
+print("Unsolved Board")
 print_board(board)
 solve(board)
-print("___________________")
+print("")
+print("")
+print("Solved Board")
 print_board(board)
