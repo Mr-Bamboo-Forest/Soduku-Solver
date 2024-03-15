@@ -11,6 +11,7 @@ board = [
 ]
 
 
+#defining the board to solve 
 def solve(bo):
     find = find_empty(bo)
     if not find:
@@ -52,7 +53,7 @@ def valid(bo, num, pos):
 
     return True
 
-
+#Defining the board that will be printed
 def print_board(bo):
     for i in range(len(bo)):
         if i % 3 == 0 and i != 0:
@@ -67,15 +68,16 @@ def print_board(bo):
             else:
                 print(str(bo[i][j]) + " ", end="")
 
-
+#finds the empty spaces in the board 
 def find_empty(bo):
     for i in range(len(bo)):
         for j in range(len(bo[0])):
             if bo[i][j] == 0:
-                return (i, j)  # row, col
+                return (i, j)  # row, col cause it is usually it is y then x
 
     return None
 
+#printing all the board in the terminal 
 print("Unsolved Board")
 print_board(board)
 solve(board)
