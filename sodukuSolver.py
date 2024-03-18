@@ -1,38 +1,32 @@
-# GUI.py
-
 from dokusan import generators 
 import numpy as np 
-
-
-
-
-
-
 import pygame
 import time
 pygame.font.init()
+from io import StringIO
+import sys
+
+# Redirect stdout to capture printed output
+sys.stdout = captured_output = StringIO()
+
+# Your code that prints something
+arr = np.array(list(str(generators.random_sudoku(avg_rank=150))))
+arr = arr.reshape(9,9)
+
+for o in range(8):
+    print(np.array2string(arr[o], separator=', ', formatter={'int': lambda x: str(x)}).replace("'", ""), end=',')
+print(np.array2string(arr[8], separator=', ', formatter={'int': lambda x: str(x)}).replace("'", ""), end='')
 
 
-class Grid:
-    '''
-    arr = np.array(list(str(generators.random_sudoku(avg_rank=50))))
-    arr = arr.reshape(9,9)
+# Reset stdout to default
+sys.stdout = sys.__stdout__
 
-    for i in range(8):
-        print(np.array2string(arr[i], separator=', ', formatter={'int': lambda x: str(x)}).replace("'", ""), end=',\n')
-    x=np.array2string(arr[8], separator=', ', formatter={'int': lambda x: str(x)}).replace("'", "")
-    x = x.rstrip(x[0])
-    print(x)'''
-    board = [[4, 3, 5, 8, 2, 1, 9, 6, 0],
-[9, 0, 0, 0, 6, 7, 0, 4, 5],
-[0, 6, 0, 9, 0, 5, 8, 1, 0],
-[0, 0, 0, 0, 8, 0, 0, 0, 6],
-[0, 0, 4, 5, 7, 6, 1, 0, 2],
-[0, 0, 6, 0, 0, 2, 4, 0, 0],
-[2, 8, 1, 6, 0, 0, 7, 0, 4],
-[0, 0, 9, 0, 0, 8, 0, 0, 1],
-[6, 5, 0, 2, 0, 4, 3, 9, 8]]
-        
+# Get the captured output
+printed_output = captured_output.getvalue()
+
+
+class Grid:   
+    board = [[9, 0, 1, 5, 0, 0, 0, 0, 7],[0, 0, 0, 0, 2, 4, 0, 9, 0],[0, 0, 0, 0, 0, 0, 1, 0, 0],[0, 2, 0, 0, 8, 3, 0, 7, 0],[0, 0, 0, 6, 0, 1, 0, 0, 4],[3, 0, 6, 0, 4, 5, 0, 0, 0],[0, 0, 0, 0, 5, 0, 0, 0, 0],[0, 3, 0, 0, 0, 0, 5, 4, 8],[7, 0, 0, 4, 0, 8, 0, 0, 9]]
 
     def __init__(self, rows, cols, width, height, win):
         self.rows = rows
@@ -254,7 +248,7 @@ def redraw_window(win, board, time, strikes):
     # Draw time
     fnt = pygame.font.SysFont("comicsans", 40)
     text = fnt.render("Time: " + format_time(time), 1, (0,0,0))
-    win.blit(text, (540 - 200, 537))
+    win.blit(text, (540 - 210, 537))
     # Draw Strikes
     text = fnt.render("X " * strikes, 1, (255, 0, 0))
     win.blit(text, (20, 560))
