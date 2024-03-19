@@ -10,7 +10,7 @@ import sys
 sys.stdout = captured_output = StringIO()
 
 # Your code that prints something
-arr = np.array(list(str(generators.random_sudoku(avg_rank=150))))
+arr = np.array(list(str(generators.random_sudoku(avg_rank=40))))
 arr = arr.reshape(9,9)
 
 for o in range(8):
@@ -24,9 +24,9 @@ sys.stdout = sys.__stdout__
 # Get the captured output
 printed_output = captured_output.getvalue()
 
-
+print(printed_output)
 class Grid:   
-    board = [[9, 0, 1, 5, 0, 0, 0, 0, 7],[0, 0, 0, 0, 2, 4, 0, 9, 0],[0, 0, 0, 0, 0, 0, 1, 0, 0],[0, 2, 0, 0, 8, 3, 0, 7, 0],[0, 0, 0, 6, 0, 1, 0, 0, 4],[3, 0, 6, 0, 4, 5, 0, 0, 0],[0, 0, 0, 0, 5, 0, 0, 0, 0],[0, 3, 0, 0, 0, 0, 5, 4, 8],[7, 0, 0, 4, 0, 8, 0, 0, 9]]
+    board = [[0, 1, 8, 6, 5, 2, 7, 9, 4],[7, 2, 0, 0, 0, 4, 0, 0, 6],[0, 4, 0, 8, 3, 7, 0, 0, 0],[1, 0, 9, 2, 0, 5, 4, 6, 7],[0, 8, 0, 0, 7, 0, 3, 0, 1],[5, 6, 7, 0, 0, 1, 0, 0, 2],[0, 5, 0, 4, 2, 0, 0, 0, 3],[4, 0, 2, 0, 6, 3, 0, 1, 0],[6, 7, 3, 0, 1, 0, 0, 4, 9]]
 
     def __init__(self, rows, cols, width, height, win):
         self.rows = rows
